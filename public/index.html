@@ -6,27 +6,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="scss/main.scss">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet ">
 </head>
 
 <body>
     <div class="container">
-        <div class="header"><h1>You have watched 376493487 hours of film</h1></div>
+        <div class="header">
+            <h1>You have watched 376493487 hours of film</h1>
+        </div>
 
-        <div id="see" class="Comedy-heading"></div>
-        <div id="see"  class="action-heading"></div>
-        <div id="see"  class="thriller-heading"></div>
-        <div id="see"  class="horror-heading"></div>
-        <div id="see"  class="romance-heading"></div>
-        <div id="see"  class="other-heading"></div>
-        <div id="see"  class="comedy-container"></div>
-        <div id="see"  class="action-container"></div>
-        <div id="see"  class="thriller-container"></div>
-        <div id="see"  class="horror-container"></div>
-        <div id="see"  class="romance-container"></div>
-        <div id="see"  class="other-container"></div>
-      </div>
-    
+        <div id="genre-headding" class="Comedy-heading">
+            <img class="logo-img" src="images/dog1.jpg" alt="comedy logo">
+            <h2>Comdey</h2>
+        </div>
+        <div id="genre-headding" class="action-heading">
+            <img class="logo-img" src="images/dog1.jpg" alt="Action logo">
+            <h2>Action</h2>
+        </div>
+        <div id="genre-headding" class="thriller-heading">
+            <img class="logo-img" src="images/dog1.jpg" alt="Thriller logo">
+            <h2>Thriller</h2>
+        </div>
+        <div id="genre-headding" class="horror-heading">
+            <img class="logo-img" src="images/dog1.jpg" alt="Horror logo">
+            <h2>Horror</h2>
+        </div>
+        <div id="genre-headding" class="romance-heading">
+            <img class="logo-img" src="images/dog1.jpg" alt="Romance logo">
+            <h2>Romance</h2>
+        </div>
+        <div id="genre-headding" class="other-heading">
+            <img class="logo-img" src="images/dog1.jpg" alt="Other logo">
+            <h2>Other</h2>
+        </div>
+        <div id="see" class="comedy-container"></div>
+        <div id="see" class="action-container"></div>
+        <div id="see" class="thriller-container"></div>
+        <div id="see" class="horror-container"></div>
+        <div id="see" class="romance-container"></div>
+        <div id="see" class="other-container"></div>
+    </div>
 
+    <button class="open-button material-icons chatBotButton" onclick="openForm()" style="font-size: 40px">add
+    </button>
+
+    <!-- The form -->
+    <div class="form-popup" id="myForm">
+        <button type="button" class="btn cancel" onclick="closeForm()">X</button>
+        <h2>Pick a Media</h2>
+        <!-- Create a nav bar with appropriate names and link to the contents -->
+        <nav>
+            <ul class="tabs">
+                <li data-tab-target="#movie" class="active tab">Movie</li>
+                <li data-tab-target="#tv-show" class="tab">TV Show</li>
+            </ul>
+        </nav>
+
+        <!-- Create a main element to house the contents -->
+        <main class="tab-content">
+            <!-- Create individual sections with appropriate ID's for the content/pages you want to include -->
+
+            <!-- Home page section -->
+            <section id="movie" data-tab-content class="active">
+                <h1>Movie</h1>
+                <form>
+                    <label for="Movie-name"><b>Movie Name</b></label><br>
+                    <input type="text" placeholder="e.g Nemo" name="Movie-name" required>
+                    <br><br>
+                    <label for="Movie-duration"><b>Movie Duration (in minutes)</b></label><br>
+                    <input type="number" placeholder="120" name="Movie-duration" required>
+                    <br><br>
+                    <label for="movie-genre"><b>Movie Genre</b></label><br>
+                    <select name="movie-number-review" required>
+                        <option value="" disabled selected hidden>Choose a genre</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="action">Action</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="horror">Horror</option>
+                        <option value="romance">Romance</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <br><br>
+                    <label for="movie-number-review"><b>Select a rating out of 5</b></label><br>
+                    <select name="movie-number-review" required>
+                        <option value="" disabled selected hidden>Add a rating</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="4">5</option>
+                    </select>
+                    <br><br>
+                    <label for="movie-emoji-review"><b>Add an emoji review</b></label><br>
+                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <label for="emoji1">:)</label><br>
+                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <label for="emoji1">:)</label><br>
+                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <label for="emoji1">:)</label>
+                    <br><br>
+                    <label for="text">Review</label><br>
+                    <textarea rows="4" cols="50" name="movie-written-review" placeholder="Enter your review here" required></textarea>
+                    <br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </section>
+
+            <section id="tv-show" data-tab-content>
+                <h1>Tv Show</h1>
+                <form>
+                    <label for="tv-name"><b>TV Show Name</b></label><br>
+                    <input type="text" placeholder="e.g Young Rolays" name="tv-name" required>
+                    <br><br>
+                    <label for="tv-season"><b>Season</b></label><br>
+                    <input type="number" placeholder="4" name="tv-season" required>
+                    <br><br>
+                    <label for="tv-epidose"><b>Season</b></label><br>
+                    <input type="number" placeholder="23" name="tv-epidose" required>
+                    <br><br>
+                    <label for="tv-duration"><b>TV Duration (in minutes)</b></label><br>
+                    <input type="number" placeholder="40" name="tv-duration" required>
+                    <br><br>
+                    <label for="tv-genre"><b>TV Genre</b></label><br>
+                    <select name="movie-number-review" required>
+                        <option value="" disabled selected hidden>Choose a genre</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="action">Action</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="horror">Horror</option>
+                        <option value="romance">Romance</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <br><br>
+                    <label for="tv-number-review"><b>Select a rating out of 5</b></label><br>
+                    <select name="tv-number-review" required>
+                        <option value="" disabled selected hidden>Add a rating</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="4">5</option>
+                    </select>
+                    <br><br>
+                    <label for="tv-emoji-review"><b>Add an emoji review</b></label><br>
+                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <label for="emoji1">:)</label><br>
+                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <label for="emoji1">:)</label><br>
+                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <label for="emoji1">:)</label>
+                    <br><br>
+                    <label for="text">Review</label><br>
+                    <textarea rows="4" cols="50" name="tv-written-review" placeholder="Enter your review here" required></textarea>
+                    <br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

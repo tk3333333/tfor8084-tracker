@@ -6,18 +6,6 @@ html{
     width: 100%;
     height: 100%;
 }
-// #header {
-//     text-align: center;
-//     border: 1px solid black;
-//     padding: 100px;
-// }
-.genre-headdings{
-    border: 1px solid black;
-    width: 20px;
-    height: 10px;
-    display: flex;
-    flex-direction: row;
-}
 
 .container {  display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -64,8 +52,159 @@ html{
   
   .other-container { grid-area: other-container; }
   
+  #genre-headding{
+    display: flex;
+    justify-content: row;
+    align-items: center;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 10px;
+  }
+
+  .logo-img{
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 10px 0 0 10px;
+  }
   
   #see{
     border: 1px solid black;
+  }
+
+  /* ChatBot Button CSS */
+.chatBotButton{
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    background-color: #95e6d4;
+    text-decoration: none;
+    border-radius: 50%;
+    color: #ffffff;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+    /* position on the page */
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    /* format with button tags */
+    outline: blue;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .chatBotButton:active{
+    background-color: #68d9c0;
+  }
+  #chatbotText{
+    background-color: #dedede;
+    margin-left: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-right: 20px;
+    width: 72%;
+    border-radius: 40px;
+    
+  }
+  .chatbot-heading{
+    padding: 3px 0 10px 10px;
+  }
+  
+  /* The popup form - hidden by default */
+  .form-popup {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+    border: 3px solid #f1f1f1;
+    background-color: #ffffff;
+  }
+  
+  /* Add styles to the form container */
+  .form-container {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  /* Full-width input fields */
+  .form-container input[type=text] {
+    width: 1300px;
+    height: 500px;
+    padding: 15px;
+    margin: 50px 0 2px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  /* When the inputs get focus, do something */
+  .form-container input[type=text]:focus{
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the close button */
+  .btn {
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    margin-bottom:10px;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    
+  }
+  .cancel{
+    float: right;
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
+
+//   tab css
+/* [] selector used to select all items that contain that attribute. Selects all with data-tab-content and defaults them to not display*/
+[data-tab-content] {
+    display: none;
+  }
+  
+  /* if they have the active class, set them to display like normal */
+  .active[data-tab-content] {
+    display: block;
+  }
+  
+  /* the tab container, uses flex to easily display in a horizontal bar */
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid black;
+  }
+  
+  /* each tab will change the cursor to point like a link */
+  .tab {
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  /* the active tab will be pink */
+  .tab.active {
+    background-color: pink;
+  }
+  
+  /* when hovering over a tab they will change colour */
+  .tab:hover {
+    background-color: bisque;
+  }
+  
+  .tab-content {
+    margin-left: 20px;
+    margin-right: 20px;
   }
   
