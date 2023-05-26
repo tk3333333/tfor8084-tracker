@@ -1,3 +1,71 @@
-h1{
-    color: red;
+*{
+    box-sizing: border-box;
+    margin: 0;
 }
+html{
+    width: 100%;
+    height: 100%;
+}
+// #header {
+//     text-align: center;
+//     border: 1px solid black;
+//     padding: 100px;
+// }
+.genre-headdings{
+    border: 1px solid black;
+    width: 20px;
+    height: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 0.5fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "header header header header header header"
+      "header header header header header header"
+      "Comedy-heading action-heading thriller-heading horror-heading romance-heading other-heading"
+      "comedy-container action-container thriller-container horror-container romance-container other-container"
+      "comedy-container action-container thriller-container horror-container romance-container other-container"
+      "comedy-container action-container thriller-container horror-container romance-container other-container";
+  }
+  
+  .header { 
+    grid-area: header; 
+    text-align: center;
+    border: 1px solid black;
+    padding: 100px;
+  }
+  
+  .Comedy-heading { grid-area: Comedy-heading; }
+  
+  .action-heading { grid-area: action-heading; }
+  
+  .thriller-heading { grid-area: thriller-heading; }
+  
+  .horror-heading { grid-area: horror-heading; }
+  
+  .other-heading { grid-area: other-heading; }
+  
+  .comedy-container { grid-area: comedy-container; }
+  
+  .action-container { grid-area: action-container; }
+  
+  .thriller-container { grid-area: thriller-container; }
+  
+  .horror-container { grid-area: horror-container; }
+  
+  .romance-heading { grid-area: romance-heading; }
+  
+  .romance-container { grid-area: romance-container; }
+  
+  .other-container { grid-area: other-container; }
+  
+  
+  #see{
+    border: 1px solid black;
+  }
+  
