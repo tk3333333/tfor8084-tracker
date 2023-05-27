@@ -43,20 +43,35 @@ tabs.forEach(tab => {
 // arrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 // get the data from the movie-form and display it on the page
 
-const form = document.getElementById('movieForm');
+const movieForm = document.getElementById('movieForm');
+const tvForm = document.getElementById('tvForm');
 const tasklistElem = document.querySelector('.comedy-container');
 
-form.addEventListener('submit', function(event) {
+movieForm.addEventListener('submit', function(event) {
     event.preventDefault(); 
-    // console.log(form.elements.movieName.value);
     addMovie(
-        form.elements.movieName.value,
-        form.elements.movieName.value,
-        form.elements.movieDuration.value,
-        form.elements.movieGenre.value,
-        form.elements.movieRating.value,
-        form.elements.movieEmojiReview.value,
-        form.elements.movieWrittenReview.value
+        movieForm.elements.movieName.value,
+        movieForm.elements.movieName.value,
+        movieForm.elements.movieDuration.value,
+        movieForm.elements.movieGenre.value,
+        movieForm.elements.movieRating.value,
+        movieForm.elements.movieEmojiReview.value,
+        movieForm.elements.movieWrittenReview.value
+    );
+
+})
+tvForm.addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    addTv(
+        tvForm.elements.tvName.value,
+        tvForm.elements.tvName.value,
+        tvForm.elements.tvEpisode.value,
+        tvForm.elements.tvSeason.value,
+        tvForm.elements.tvDuration.value,
+        tvForm.elements.tvGenre.value,
+        tvForm.elements.tvRating.value,
+        tvForm.elements.tvEmojiReview.value,
+        tvForm.elements.tvWrittenReview.value
     );
 
 })
@@ -75,6 +90,14 @@ class Movie{
     
   }
 
+  class Tv extends Movie{
+    constructor(name, episode, season, duration, genre, rating, emojiReview, writtenReview,){
+        super(name, duration, genre, rating, emojiReview, writtenReview);
+        this.episode = episode;
+        this.season = season;
+    }
+  }
+
   var media = [];
 
   function addMovie(Name, name, duration, genre, rating, emojiReview, writtenReview){
@@ -85,10 +108,25 @@ class Movie{
         console.log(media);
     }
 
+    function addTv(Name, name, episode, season, duration, genre, rating, emojiReview, writtenReview){
+        Name = new Tv(name, episode, season, duration, genre, rating, emojiReview, writtenReview);
+        media.push(Name);
+        displaymedia(Name);
+            console.log(Name);
+            console.log(media);
+    }
+
     function displaymedia(media) {
         let item = document.createElement('button');
-        item.innerHTML = `<p> ${media.name} </p><br><br> <p> ${media.duration} </p><br><br> <p> ${media.genre} </p><br><br> <p> ${media.rating} </p><br><br> <p> ${media.emojiReview} </p><br><br> <p> ${media.writtenReview} </p><br><br> <p> ${media.date} </p><br><br> <p> ${media.ID} </p>`;
-        tasklistElem.appendChild(item);
-        form.reset();
+        if (media instanceof Tv){
+            item.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p><p> ${media.duration}</p>p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+        tasklistElem.appendChild(item);        
+        tvForm.reset();
       }
+        else if (media instanceof Movie){
+            item.innerHTML = `<p> ${media.name} </p><p> ${media.duration}</p>p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+        tasklistElem.appendChild(item);
+        movieForm.reset();
+        }
         
+    }

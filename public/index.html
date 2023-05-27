@@ -115,21 +115,21 @@
 
             <section id="tv-show" data-tab-content>
                 <h1>Tv Show</h1>
-                <form>
-                    <label for="tv-name"><b>TV Show Name</b></label><br>
-                    <input type="text" placeholder="e.g Young Rolays" name="tv-name" required>
+                <form id="tvForm">
+                    <label for="tvName"><b>TV Show Name</b></label><br>
+                    <input type="text" placeholder="e.g Young Rolays" name="tvName" id="tvName" required>
                     <br><br>
-                    <label for="tv-season"><b>Season</b></label><br>
-                    <input type="number" placeholder="4" name="tv-season" required>
+                    <label for="tvSeason"><b>Season</b></label><br>
+                    <input type="number" placeholder="4" name="tvSeason" id="tvSeason" required>
                     <br><br>
-                    <label for="tv-epidose"><b>Season</b></label><br>
-                    <input type="number" placeholder="23" name="tv-epidose" required>
+                    <label for="tvEpisode"><b>Episode</b></label><br>
+                    <input type="number" placeholder="23" name="tvEpisode" id="tvEpisode" required>
                     <br><br>
-                    <label for="tv-duration"><b>TV Duration (in minutes)</b></label><br>
-                    <input type="number" placeholder="40" name="tv-duration" required>
+                    <label for="tvDuration"><b>TV Duration (in minutes)</b></label><br>
+                    <input type="number" placeholder="40" name="tvDuration" id="tvDuration" required>
                     <br><br>
-                    <label for="tv-genre"><b>TV Genre</b></label><br>
-                    <select name="movie-number-review" required>
+                    <label for="tvGenre"><b>TV Genre</b></label><br>
+                    <select name="tvGenre" id="tvGenre" required>
                         <option value="" disabled selected hidden>Choose a genre</option>
                         <option value="comedy">Comedy</option>
                         <option value="action">Action</option>
@@ -139,8 +139,8 @@
                         <option value="other">Other</option>
                     </select>
                     <br><br>
-                    <label for="tv-number-review"><b>Select a rating out of 5</b></label><br>
-                    <select name="tv-number-review" required>
+                    <label for="tvRating"><b>Select a rating out of 5</b></label><br>
+                    <select name="tvRating" id="tvRating" required>
                         <option value="" disabled selected hidden>Add a rating</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -150,16 +150,16 @@
                         <option value="4">5</option>
                     </select>
                     <br><br>
-                    <label for="tv-emoji-review"><b>Add an emoji review</b></label><br>
-                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <label for="tvEmojiReview"><b>Add an emoji review</b></label><br>
+                    <input type="checkbox" id="tvEmojiReview" name="tvEmojiReview" value="happy">
                     <label for="emoji1">:)</label><br>
-                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <input type="checkbox" id="tvEmojiReview" name="tvEmojiReview" value="happy">
                     <label for="emoji1">:)</label><br>
-                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
+                    <input type="checkbox" id="tvEmojiReview" name="tvEmojiReview" value="happy">
                     <label for="emoji1">:)</label>
                     <br><br>
                     <label for="text">Review</label><br>
-                    <textarea rows="4" cols="50" name="tv-written-review" placeholder="Enter your review here" required></textarea>
+                    <textarea rows="4" cols="50" name="tvWrittenReview" id="tvWrittenReview" placeholder="Enter your review here" required></textarea>
                     <br><br>
                     <input type="submit" value="Submit">
                 </form>
