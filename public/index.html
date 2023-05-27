@@ -47,12 +47,12 @@
         <div id="see" class="other-container"></div>
     </div>
 
-    <button class="open-button material-icons chatBotButton" onclick="openForm()" style="font-size: 40px">add
+    <button popUpButton class="material-icons popUpButton" style="font-size: 40px">add
     </button>
 
-    <!-- The form -->
-    <div class="form-popup" id="myForm">
-        <button type="button" class="btn cancel" onclick="closeForm()">X</button>
+   
+    <dialog class="form-popup">
+        <button closeButton type="button" class="btn">X</button>
         <h2>Pick a Media</h2>
         <!-- Create a nav bar with appropriate names and link to the contents -->
         <nav>
@@ -69,15 +69,15 @@
             <!-- Home page section -->
             <section id="movie" data-tab-content class="active">
                 <h1>Movie</h1>
-                <form>
-                    <label for="Movie-name"><b>Movie Name</b></label><br>
-                    <input type="text" placeholder="e.g Nemo" name="Movie-name" required>
+                <form id="movieForm">
+                    <label for="movieName"><b>Movie Name</b></label><br>
+                    <input type="text" placeholder="e.g Nemo" name="movieName" id="movieName" required>
                     <br><br>
-                    <label for="Movie-duration"><b>Movie Duration (in minutes)</b></label><br>
-                    <input type="number" placeholder="120" name="Movie-duration" required>
+                    <label for="movieDuration"><b>Movie Duration (in minutes)</b></label><br>
+                    <input type="number" placeholder="120" name="movieDuration" id="movieDuration" required>
                     <br><br>
-                    <label for="movie-genre"><b>Movie Genre</b></label><br>
-                    <select name="movie-number-review" required>
+                    <label for="movieGenre"><b>Movie Genre</b></label><br>
+                    <select name="movieGenre" id="movieGenre" required>
                         <option value="" disabled selected hidden>Choose a genre</option>
                         <option value="comedy">Comedy</option>
                         <option value="action">Action</option>
@@ -87,27 +87,27 @@
                         <option value="other">Other</option>
                     </select>
                     <br><br>
-                    <label for="movie-number-review"><b>Select a rating out of 5</b></label><br>
-                    <select name="movie-number-review" required>
+                    <label for="movieRating"><b>Select a rating out of 5</b></label><br>
+                    <select name="movieRating" id="movieRating" required>
                         <option value="" disabled selected hidden>Add a rating</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="4">5</option>
+                        <option value="5">5</option>
                     </select>
                     <br><br>
-                    <label for="movie-emoji-review"><b>Add an emoji review</b></label><br>
-                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
-                    <label for="emoji1">:)</label><br>
-                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
-                    <label for="emoji1">:)</label><br>
-                    <input type="checkbox" id="emoji1" name="emoji1" value="happy">
-                    <label for="emoji1">:)</label>
+                    <label for="movieEmojiReview"><b>Add an emoji review</b></label><br>
+                    <input type="checkbox" id="movieEmojiReview" name="movieEmojiReview" value="happy">
+                    <label for="movieEmojiReview">:)</label><br>
+                    <input type="checkbox" id="movieEmojiReview" name="movieEmojiReview" value="happy">
+                    <label for="movieEmojiReview">:)</label><br>
+                    <input type="checkbox" id="movieEmojiReview" name="movieEmojiReview" value="happy">
+                    <label for="movieEmojiReview">:)</label>
                     <br><br>
-                    <label for="text">Review</label><br>
-                    <textarea rows="4" cols="50" name="movie-written-review" placeholder="Enter your review here" required></textarea>
+                    <label for="movieWrittenReview">Review</label><br>
+                    <textarea rows="4" cols="50" name="movieWrittenReview" id="movieWrittenReview" placeholder="Enter your review here" required></textarea>
                     <br><br>
                     <input type="submit" value="Submit">
                 </form>
@@ -165,7 +165,7 @@
                 </form>
             </section>
         </main>
-    </div>
+    </dialog>
     <script src="script.js"></script>
 </body>
 

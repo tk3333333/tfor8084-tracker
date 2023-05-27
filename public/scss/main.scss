@@ -9,16 +9,16 @@ html{
 
 .container {  display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 0.5fr 1fr 1fr 1fr;
+    grid-template-rows: 2fr 0.5fr minmax(100px, auto);
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
       "header header header header header header"
-      "header header header header header header"
       "Comedy-heading action-heading thriller-heading horror-heading romance-heading other-heading"
-      "comedy-container action-container thriller-container horror-container romance-container other-container"
-      "comedy-container action-container thriller-container horror-container romance-container other-container"
       "comedy-container action-container thriller-container horror-container romance-container other-container";
+    //   "comedy-container action-container thriller-container horror-container romance-container other-container"
+    //   "comedy-container action-container thriller-container horror-container romance-container other-container"
+    //   "comedy-container action-container thriller-container horror-container romance-container other-container";
   }
   
   .header { 
@@ -72,8 +72,8 @@ html{
     border: 1px solid black;
   }
 
-  /* ChatBot Button CSS */
-.chatBotButton{
+// pop up button css
+  .popUpButton{
     width: 80px;
     height: 80px;
     font-size: 40px;
@@ -92,56 +92,23 @@ html{
     cursor: pointer;
   }
   
-  .chatBotButton:active{
+  .popUpButton:active{
     background-color: #68d9c0;
   }
-  #chatbotText{
-    background-color: #dedede;
-    margin-left: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-top: 10px;
-    padding-right: 20px;
-    width: 72%;
-    border-radius: 40px;
-    
-  }
-  .chatbot-heading{
-    padding: 3px 0 10px 10px;
-  }
+ 
   
   /* The popup form - hidden by default */
   .form-popup {
-    display: none;
-    position: fixed;
-    bottom: 100px;
-    right: 100px;
-    border: 3px solid #f1f1f1;
+    height: 705px;
+    border: 3px solid black;
     background-color: #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // padding: 0px;
   }
   
-  /* Add styles to the form container */
-  .form-container {
-    width: 100%;
-    padding: 10px;
-    background-color: white;
-  }
   
-  /* Full-width input fields */
-  .form-container input[type=text] {
-    width: 1300px;
-    height: 500px;
-    padding: 15px;
-    margin: 50px 0 2px 0;
-    border: none;
-    background: #f1f1f1;
-  }
-  
-  /* When the inputs get focus, do something */
-  .form-container input[type=text]:focus{
-    background-color: #ddd;
-    outline: none;
-  }
   
   /* Set a style for the close button */
   .btn {
@@ -155,15 +122,8 @@ html{
     opacity: 0.8;
     display: flex;
     justify-content: center;
-    
-  }
-  .cancel{
     float: right;
-  }
-  
-  /* Add some hover effects to buttons */
-  .form-container .btn:hover, .open-button:hover {
-    opacity: 1;
+    
   }
 
 //   tab css
