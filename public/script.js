@@ -38,6 +38,19 @@ tabs.forEach(tab => {
         tab.classList.add('active')
         target.classList.add('active')
     })
+    //If the tab has been clicked we'll find what the target was first
+    const target = document.querySelector(tab.dataset.tabTarget)
+
+    //Remove active class from all tabs and tab contents
+    tabContents.forEach(tabContent => {
+        tabContent.classList.remove('active')
+    })
+    tabs.forEach(tab => {
+        tab.classList.remove('active')
+    })
+    //Add active class to the tab which has been clicked and it's relevent page content
+    tab.classList.add('active')
+    target.classList.add('active')
 })
 
 // arrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
@@ -98,6 +111,7 @@ class Movie {
 
 }
 
+
 class Tv extends Movie {
     constructor(name, episode, season, duration, genre, rating, emojiReview, writtenReview,) {
         super(name, duration, genre, rating, emojiReview, writtenReview);
@@ -115,7 +129,6 @@ function addMovie(Name, name, duration, genre, rating, emojiReview, writtenRevie
     console.log(Name);
     console.log(media);
 }
-
 function addTv(Name, name, episode, season, duration, genre, rating, emojiReview, writtenReview) {
     Name = new Tv(name, episode, season, duration, genre, rating, emojiReview, writtenReview);
     media.push(Name);
@@ -126,18 +139,16 @@ function addTv(Name, name, episode, season, duration, genre, rating, emojiReview
 
 function displaymedia(media) {
     let item = document.createElement('button');
-    item.setAttribute('id','description');
+    item.setAttribute('id', 'description');
     // let me = document.createElement('modal');
     // me.setAttribute('id','modalHE');
 
 
-    if (media instanceof Tv) {
-        item.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
-        genreloop(media.genre, item);
-        // modal.innerHTML = `<p>its opens</p><button id="closeMedia">close</button>`
-        deleteItem(item);
-        tvForm.reset();
-    }
+
+if (media instanceof Tv) {
+    item.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+    genreloop(media.genre, item);
+    deleteItem(item);}
     else if (media instanceof Movie) {
         item.innerHTML = `<p> ${media.name} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
         genreloop(media.genre, item);
@@ -145,6 +156,7 @@ function displaymedia(media) {
         movieForm.reset();
     }
 }
+
 
 function deleteItem(item) {
     let delButton = document.createElement('button');
@@ -156,31 +168,20 @@ function deleteItem(item) {
     })
 }
 
-const openMedia = document.getElementById("description")
-const closeMedia = document.getElementById("closeMedia")
-const modalHE = document.querySelector(".modalHE")
 
-openMedia.addEventListener('click', () => {
-    modalHE.showModal();
-});
-
-closeMedia.addEventListener('click', () => {
-    modalHE.close();
-});
-
-function genreloop(genre, item){
-    if(genre == "comedy"){
+function genreloop(genre, item) {
+    if (genre == "comedy") {
         tasklistElem.appendChild(item);
-    }else if(genre == "action"){
+    } else if (genre == "action") {
         tasklistElem1.appendChild(item);
-    }else if(genre == "thriller"){
+    } else if (genre == "thriller") {
         tasklistElem2.appendChild(item);
-    }else if(genre == "horror"){
+    } else if (genre == "horror") {
         tasklistElem3.appendChild(item);
-    }else if(genre == "romance"){
+    } else if (genre == "romance") {
         tasklistElem4.appendChild(item);
-    }else{
-        tasklistElem5.appendChild(item);    
+    } else {
+        tasklistElem5.appendChild(item);
     }
 
 
