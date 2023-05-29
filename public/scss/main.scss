@@ -165,3 +165,32 @@ html{
     margin-right: 20px;
   }
   
+  #description{
+    border: 1px solid black;
+  }
+  #closeMedia{
+    background-color: red;
+  }
+
+  @media screen and (max-width: 480px) {
+    .container {  display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 0.5fr minmax(100px, auto) 0.5fr minmax(100px, auto) 0.5fr minmax(100px, auto) 0.5fr minmax(100px, auto) 0.5fr minmax(100px, auto) 0.5fr minmax(100px, auto);
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+        "header"
+        "Comedy-heading"
+        "comedy-container"
+        "action-heading"
+        "action-container"
+        "thriller-heading"
+        "thriller-container"
+        "horror-heading"
+        "horror-container"
+        "romance-heading"
+        "romance-container"
+        "other-heading"
+        "other-container";
+      }
+  }
