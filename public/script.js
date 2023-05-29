@@ -46,9 +46,16 @@ tabs.forEach(tab => {
 const movieForm = document.getElementById('movieForm');
 const tvForm = document.getElementById('tvForm');
 const tasklistElem = document.querySelector('.comedy-container');
+const tasklistElem1 = document.querySelector('.action-container');
+const tasklistElem2 = document.querySelector('.thriller-container');
+const tasklistElem3 = document.querySelector('.horror-container');
+const tasklistElem4 = document.querySelector('.romance-container');
+const tasklistElem5 = document.querySelector('.other-container');
+
 
 movieForm.addEventListener('submit', function (event) {
     event.preventDefault();
+    modal.close();
     addMovie(
         movieForm.elements.movieName.value,
         movieForm.elements.movieName.value,
@@ -62,6 +69,7 @@ movieForm.addEventListener('submit', function (event) {
 })
 tvForm.addEventListener('submit', function (event) {
     event.preventDefault();
+    modal.close();
     addTv(
         tvForm.elements.tvName.value,
         tvForm.elements.tvName.value,
@@ -119,20 +127,20 @@ function addTv(Name, name, episode, season, duration, genre, rating, emojiReview
 function displaymedia(media) {
     let item = document.createElement('button');
     item.setAttribute('id','description');
-    let me = document.createElement('modal');
-    me.setAttribute('id','modalHE');
+    // let me = document.createElement('modal');
+    // me.setAttribute('id','modalHE');
 
 
     if (media instanceof Tv) {
-        item.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p><p> ${media.duration}</p>p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
-        tasklistElem.appendChild(item);
-        modal.innerHTML = `<p>its opens</p><button id="closeMedia">close</button>`
-        // deleteItem(item);
+        item.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+        genreloop(media.genre, item);
+        // modal.innerHTML = `<p>its opens</p><button id="closeMedia">close</button>`
+        deleteItem(item);
         tvForm.reset();
     }
     else if (media instanceof Movie) {
         item.innerHTML = `<p> ${media.name} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
-        tasklistElem.appendChild(item);
+        genreloop(media.genre, item);
         deleteItem(item);
         movieForm.reset();
     }
@@ -159,3 +167,21 @@ openMedia.addEventListener('click', () => {
 closeMedia.addEventListener('click', () => {
     modalHE.close();
 });
+
+function genreloop(genre, item){
+    if(genre == "comedy"){
+        tasklistElem.appendChild(item);
+    }else if(genre == "action"){
+        tasklistElem1.appendChild(item);
+    }else if(genre == "thriller"){
+        tasklistElem2.appendChild(item);
+    }else if(genre == "horror"){
+        tasklistElem3.appendChild(item);
+    }else if(genre == "romance"){
+        tasklistElem4.appendChild(item);
+    }else{
+        tasklistElem5.appendChild(item);    
+    }
+
+
+}
