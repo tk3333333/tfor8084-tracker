@@ -55,7 +55,6 @@ tabs.forEach(tab => {
 // checking to see if a check box has been checked
 
 
-// arrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 // get the data from the movie-form and display it on the page
 
 const movieForm = document.getElementById('movieForm');
@@ -69,18 +68,24 @@ const tasklistElem5 = document.querySelector('.other-container');
 const timeUpdate = document.querySelector('.header');
 
 
+displaymedia();
+updateTimeWatched();
+
+
 movieForm.addEventListener('submit', function (event) {
     event.preventDefault();
     modal.close();
     addMovie(
         movieForm.elements.movieName.value,
         movieForm.elements.movieName.value,
+        movieForm.elements.movieDirector.value,
         movieForm.elements.movieDuration.value,
         movieForm.elements.movieGenre.value,
         movieForm.elements.movieRating.value,
         movieForm.elements.movieEmojiReview.value,
         movieForm.elements.movieWrittenReview.value
     );
+    movieForm.reset();
 
 })
 tvForm.addEventListener('submit', function (event) {
@@ -97,10 +102,12 @@ tvForm.addEventListener('submit', function (event) {
         tvForm.elements.tvEmojiReview.value,
         tvForm.elements.tvWrittenReview.value
     );
+    tvForm.reset();
+
 
 })
 
-class Movie {
+class Media {
     constructor(name, duration, genre, rating, emojiReview, writtenReview) {
         this.name = name;
         this.duration = duration;
@@ -114,52 +121,102 @@ class Movie {
 
 }
 
+class Movie extends Media {
+    constructor(name, director, duration, genre, rating, emojiReview, writtenReview) {
+        super(name, duration, genre, rating, emojiReview, writtenReview);
+        this.media = 'movie';
+        this.director = director;
+    }
 
-class Tv extends Movie {
+}
+
+
+class Tv extends Media {
     constructor(name, episode, season, duration, genre, rating, emojiReview, writtenReview,) {
         super(name, duration, genre, rating, emojiReview, writtenReview);
+        this.media = 'tv';
         this.episode = episode;
         this.season = season;
     }
 }
 
-var media = [];
 
-function addMovie(Name, name, duration, genre, rating, emojiReview, writtenReview) {
-    Name = new Movie(name, duration, genre, rating, emojiReview, writtenReview);
-    media.push(Name);
-    updateTimeWatched(duration);
-    displaymedia(Name);
+
+function addMovie(Name, name, director, duration, genre, rating, emojiReview, writtenReview) {
+    Name = new Movie(name, director, duration, genre, rating, emojiReview, writtenReview);
+    storeMedia(Name);
     console.log(Name);
-    console.log(media);
+    displaymedia();
 }
 function addTv(Name, name, episode, season, duration, genre, rating, emojiReview, writtenReview) {
     Name = new Tv(name, episode, season, duration, genre, rating, emojiReview, writtenReview);
-    media.push(Name);
-    updateTimeWatched(duration);
-    displaymedia(Name);
+    storeMedia(Name);
     console.log(Name);
-    console.log(media);
+    displaymedia();
 }
 
-function displaymedia(media) {
-    let item = document.createElement('button');
-    item.setAttribute('id', 'description');
 
-if (media instanceof Tv) {
-    item.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
-    genreloop(media.genre, item);
-    deleteItem(item, media);
-    tvForm.reset();
-}
-    else if (media instanceof Movie) {
-        item.innerHTML = `<p> ${media.name} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
-        genreloop(media.genre, item);
-        deleteItem(item, media);
-        movieForm.reset();
+
+function displaymedia() {
+    tasklistElem.innerHTML = '';
+    tasklistElem1.innerHTML = '';
+    tasklistElem2.innerHTML = '';
+    tasklistElem3.innerHTML = '';
+    tasklistElem4.innerHTML = '';
+    tasklistElem5.innerHTML = '';
+    updateTimeWatched();
+
+    let storedMedia = JSON.parse(localStorage.getItem('storedMedia'));
+
+    if (storedMedia !== null) {
+        storedMedia.forEach((film) => {
+            createmedia(film);
+        })
     }
 }
 
+// function createmedia(media) {
+//     let item = document.createElement('button');
+//     item.setAttribute('id', 'description');
+//         item.innerHTML = `<p>${media.name} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+//         genreloop(media.genre, item);
+//         deleteItem(item, media);
+
+//     }
+
+function createmedia(media) {
+    let item = document.createElement('button');
+    item.setAttribute('id', 'description');
+    if (media.media == 'tv') {
+        item.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+        genreloop(media.genre, item);
+        deleteItem(item, media);
+    } else if (media.media == 'movie') {
+        item.innerHTML = `<p>${media.name} </p><p> ${media.director} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+        genreloop(media.genre, item);
+        deleteItem(item, media);
+
+    }
+}
+
+function storeMedia(film) {
+    let storedMedia = JSON.parse(localStorage.getItem('storedMedia'));
+
+    if (storedMedia == null) {
+        // Set a new value for storeMedia in localStorage
+        storedMedia = [film]
+    } else {
+        // Check to see if film exists in localStorage
+        if (storedMedia.find(element => element.name === film.name && element.director === film.director)) {
+            console.log('film already exists')
+        } else {
+            storedMedia.push(film)
+        }
+    }
+    localStorage.setItem('storedMedia', JSON.stringify(storedMedia))
+
+    console.log(JSON.parse(localStorage.getItem('storedMedia')))
+}
 
 function deleteItem(item, media) {
     let delButton = document.createElement('button');
@@ -167,10 +224,17 @@ function deleteItem(item, media) {
     delButton.appendChild(delButtonText);
     item.appendChild(delButton);
     delButton.addEventListener('click', function (event) {
-        item.remove();
-        updateTimeDelete(media.duration);
-    })
+        let storedMedia = JSON.parse(localStorage.getItem('storedMedia'));
 
+        for (i = 0; i < storedMedia.length; i++) {
+            if (storedMedia[i].name === media.name && storedMedia[i].director === media.director) {
+                storedMedia.splice(i, 1);
+                localStorage.setItem('storedMedia', JSON.stringify(storedMedia))
+                item.remove();
+                updateTimeWatched();
+            }
+        }
+    })
 }
 
 
@@ -193,22 +257,23 @@ function genreloop(genre, item) {
 // time watched java 
 // Code taken and adapted from https://www.w3resource.com/javascript-exercises/javascript-date-exercise-13.php#:~:text=JavaScript%20Code%3A,log(timeConvert(200))%3B
 
-let totalTime = 0;
-function updateTimeWatched(duration){
-    totalTime = Number(totalTime) + Number(duration);
-    var hours = (totalTime / 60);
-    var rhours = Math.floor(hours);
-    var minutes = (hours - rhours) * 60;
-    var rminutes = Math.round(minutes);
+
+function updateTimeWatched() {
+    let totalTime = 0;
+    let storedMedia = JSON.parse(localStorage.getItem('storedMedia'));
+    if (storedMedia.length == null) {
+        var rhours = 0;
+        var rminutes = 0;
+    } else {
+        for (i = 0; i < storedMedia.length; i++) {
+            totalTime = Number(totalTime) + Number(storedMedia[i].duration);
+        }
+
+        var hours = (totalTime / 60);
+        var rhours = Math.floor(hours);
+        var minutes = (hours - rhours) * 60;
+        var rminutes = Math.round(minutes);
+    }
     document.getElementById("totalTime").innerHTML = 'Total Time Watched: ' + rhours + ' Hours' + ' and ' + rminutes + ' Minutes';
 }
 
-
-function updateTimeDelete(duration){
-    totalTime = Number(totalTime) - Number(duration);
-    var hours = (totalTime / 60);
-    var rhours = Math.floor(hours);
-    var minutes = (hours - rhours) * 60;
-    var rminutes = Math.round(minutes);
-    document.getElementById("totalTime").innerHTML = 'Total Time Watched: ' + rhours + ' Hours' + ' and ' + rminutes + ' Minutes';
-}
