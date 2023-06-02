@@ -341,10 +341,21 @@ function storeMedia(film) {
         storedMedia = [film]
     } else {
         // Check to see if film exists in localStorage
+        if(film.media == 'movie') {
         if (storedMedia.find(element => element.name === film.name && element.director === film.director)) {
             console.log('film already exists')
+            alert("Movie has already been added");
+
         } else {
             storedMedia.push(film)
+        }} else if(film.media == 'tv') {
+            if (storedMedia.find(element => element.name === film.name && element.season === film.season && element.episode === film.episode)) {
+                console.log('film already exists')
+                alert("TV show has already been added");
+    
+            } else {
+                storedMedia.push(film)
+            }
         }
     }
     localStorage.setItem('storedMedia', JSON.stringify(storedMedia))
@@ -374,15 +385,15 @@ function deleteItem(itemModal, media, item) {
 
 
 function genreloop(genre, item) {
-    if (genre == "comedy") {
+    if (genre == "Comedy") {
         tasklistElem.appendChild(item);
-    } else if (genre == "action") {
+    } else if (genre == "Action") {
         tasklistElem1.appendChild(item);
-    } else if (genre == "thriller") {
+    } else if (genre == "Thriller") {
         tasklistElem2.appendChild(item);
-    } else if (genre == "horror") {
+    } else if (genre == "Horror") {
         tasklistElem3.appendChild(item);
-    } else if (genre == "romance") {
+    } else if (genre == "Romance") {
         tasklistElem4.appendChild(item);
     } else {
         tasklistElem5.appendChild(item);

@@ -31,8 +31,6 @@ body{
     background-repeat: no-repeat;
     background-size: 1500px 366px;
     color: #66FCF1;
-    
-    
   }
   
   .Comedy-heading { grid-area: Comedy-heading; }
@@ -206,6 +204,7 @@ body{
   .itemModal{
     border: 1px solid #66FCF1;
     margin: 10px;
+    padding: 30px;
     border-radius: 10px;
     position: absolute;
     top: 50%;
@@ -214,6 +213,8 @@ body{
     color: #ffffff;
     background-color: #0B0C10;
     font-size: large;
+    max-width: 300px;
+    max-height: auto;
   } 
   .closeMedia{
     background-color: #0B0C10;
@@ -281,4 +282,18 @@ body{
         width: 375px;
         height: 75;
       }
+      .header { 
+        grid-area: header; 
+        text-align: center;
+        border: 1px solid black;
+        padding: 100px;
+        background-color: #ffffff;
+        background-repeat: no-repeat;
+        background-size: 414px 500px;
+        color: #66FCF1;
+        h1{
+            font-size: 1.5em;
+        }
+      }
+
   }
