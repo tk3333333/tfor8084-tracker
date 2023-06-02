@@ -7,6 +7,9 @@ html{
     height: 100%;
     background-color: #202833;
 }
+body{
+    font-family: sans-serif;
+}
 
 .container {  display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -25,7 +28,11 @@ html{
     border: 1px solid black;
     padding: 100px;
     background-color: #ffffff;
-    background-image: url("images/inline_image_preview.jpg");
+    background-repeat: no-repeat;
+    background-size: 1500px 366px;
+    color: #66FCF1;
+    
+    
   }
   
   .Comedy-heading { grid-area: Comedy-heading; }
@@ -65,7 +72,7 @@ html{
   .logo-img{
     width: 100px;
     height: 100px;
-    margin-right: 20px;
+    margin-right: 10px;
     border-radius: 10px 0 0 10px;
   }
 
@@ -96,7 +103,7 @@ html{
   
   /* The popup form - hidden by default */
   .form-popup {
-    height: 730px;
+    height: 740px;
     border: 3px solid #66FCF1;
     background-color: #0B0C10;
     color: #ffffff;
@@ -180,7 +187,7 @@ html{
     height: 75px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     margin: 10px;
     border-radius: 10px;
     background-color: #0B0C10;
@@ -197,7 +204,6 @@ html{
   }
 
   .itemModal{
-    text-align: center;
     border: 1px solid #66FCF1;
     margin: 10px;
     border-radius: 10px;
@@ -207,10 +213,11 @@ html{
     transform: translate(-50%, -50%);
     color: #ffffff;
     background-color: #0B0C10;
+    font-size: large;
   } 
   .closeMedia{
     background-color: #0B0C10;
-    color: #66FCF1;
+    color: #ffffff;
     padding: 8px;
     border: 1px solid #66FCF1;
     cursor: pointer;
@@ -221,7 +228,34 @@ html{
     right: 0;
 
   }
+  .deleteButton{
+    margin-top: 10px;
+    background-color: #0B0C10;
+    border: 1px solid #66FCF1;
+    color: #ffffff;
+    padding: 8px;
+  }
 
+  .submittButton{
+    // margin-top: 10px;
+    background-color: #0B0C10;
+    border: 1px solid #66FCF1;
+    color: #ffffff;
+    padding: 8px;
+  }
+
+  input[type=text], input[type=number], input[type=checkbox]{
+    background-color: #C5C6C8;
+    border: 1px solid #66FCF1;
+    color: #202833;
+  }#tvGenre, #tvRating, #movieGenre, #movieRating, #tvWrittenReview, #movieWrittenReview{
+    background-color: #C5C6C8;
+    border: 1px solid #66FCF1;
+    color: #202833;
+  }
+  ::placeholder {
+    color: #202833;
+  }
   @media screen and (max-width: 414px) {
     .container {  display: grid;
         grid-template-columns: 1fr;

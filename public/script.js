@@ -156,10 +156,10 @@ movieForm.addEventListener('submit', function (event) {
         movieForm.elements.movieDuration.value,
         movieForm.elements.movieGenre.value,
         movieForm.elements.movieRating.value,
-        emojiReview(document.getElementById("movieEmojiReview1").value,
-        document.getElementById("movieEmojiReview2").value, 
-        document.getElementById("movieEmojiReview3").value,
-        document.getElementById("movieEmojiReview4").value),
+        emojiReview(document.getElementById("movieEmojiReview1"),
+        document.getElementById("movieEmojiReview2"), 
+        document.getElementById("movieEmojiReview3"),
+        document.getElementById("movieEmojiReview4")),
         movieForm.elements.movieWrittenReview.value
     );
     movieForm.reset();
@@ -176,10 +176,10 @@ tvForm.addEventListener('submit', function (event) {
         tvForm.elements.tvDuration.value,
         tvForm.elements.tvGenre.value,
         tvForm.elements.tvRating.value,
-        emojiReview(document.getElementById("tvEmojiReview1").value,
-        document.getElementById("tvEmojiReview2").value, 
-        document.getElementById("tvEmojiReview3").value,
-        document.getElementById("tvEmojiReview4").value),
+        emojiReview(document.getElementById("tvEmojiReview1"),
+        document.getElementById("tvEmojiReview2"), 
+        document.getElementById("tvEmojiReview3"),
+        document.getElementById("tvEmojiReview4")),
         tvForm.elements.tvWrittenReview.value
     );
     tvForm.reset();
@@ -189,14 +189,14 @@ tvForm.addEventListener('submit', function (event) {
 
 function emojiReview(emoji1, emoji2, emoji3, emoji4) {
     let string = '';
-    if(emoji1 !== '') {
-        string = string + emoji1 + ' ';
-    }if(emoji2 !== '') {
-        string = string + emoji2 + ' ';
-    }if(emoji3 !== '') {
-        string = string + emoji3 + ' ';
-    }if(emoji4 !== '') {
-        string = string + emoji4 + ' ';
+    if(emoji1.checked == true) {
+        string = string + emoji1.value + ' ';
+    }if(emoji2.checked == true) {
+        string = string + emoji2.value + ' ';
+    }if(emoji3.checked == true) {
+        string = string + emoji3.value + ' ';
+    }if(emoji4.checked == true) {
+        string = string + emoji4.value + ' ';
     }
     return string;
 }
@@ -282,10 +282,17 @@ function createmedia(media) {
 
     if (media.media == 'tv') {
 
-        item.innerHTML = `<p> ${media.name}</p>`;
-        itemModal.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p>
-        <p><bold>Duration</bold><p> ${media.duration} minuets</p><p> ${media.genre} </p><p> ${media.rating}/5 </p><p> ${media.emojiReview} </p>
-        <p>Review</p><br><p> ${media.writtenReview}</p><button class=closeMedia>X</button>`;
+        item.innerHTML = `<h1>${media.name}</h1>`;
+        itemModal.innerHTML = `<h1>${media.name}</h1>
+        <p><b>Season:</b> ${media.season}</p>
+        <p><b>Episode:</b> ${media.episode}</p>
+        <p><b>Duration:</b> ${media.duration} minutes</p>
+        <p><b>Genre:</b> ${media.genre}</p>
+        <p><b>Rating:</b> ${media.rating}/5</p>
+        <p>${media.emojiReview}</p>
+        <p><b>Review</b></p>
+        <p>${media.writtenReview}</p>
+        <button class=closeMedia>X</button>`;
         let closeMedia = itemModal.querySelector('.closeMedia');
         
 
@@ -301,10 +308,16 @@ function createmedia(media) {
 
     } else if (media.media == 'movie') {
 
-        item.innerHTML = `<p> ${media.name}</p>`;
-        itemModal.innerHTML = `<p> ${media.name} </p><p> ${media.director}</p>
-        <p><bold>Duration</bold> ${media.duration} minuets</p><p> ${media.genre} </p><p> ${media.rating}/5 </p><p> ${media.emojiReview} </p>
-        <p>Review</p><p> ${media.writtenReview}</p><button class="closeMedia">X</button>`;
+        item.innerHTML = `<h1> ${media.name}</h1>`;
+        itemModal.innerHTML = `<h1> ${media.name}</h1>
+        <p><b>Director/s:</b> ${media.director}</p>
+        <p><b>Duration:</b> ${media.duration} minutes</p>
+        <p><b>Genre:</b> ${media.genre} </p>
+        <p><b>Rating:</b> ${media.rating}/5 </p>
+        <p> ${media.emojiReview}</p>
+        <p><b>Review:</b></p>
+        <p>${media.writtenReview}</p>
+        <button class="closeMedia">X</button>`;
         let closeMedia = itemModal.querySelector('.closeMedia');
 
         genreloop(media.genre, item);
@@ -341,6 +354,7 @@ function storeMedia(film) {
 
 function deleteItem(itemModal, media, item) {
     let delButton = document.createElement('button');
+    delButton.setAttribute('class', 'deleteButton');
     let delButtonText = document.createTextNode('Delete');
     delButton.appendChild(delButtonText);
     itemModal.appendChild(delButton);
@@ -398,6 +412,6 @@ function updateTimeWatched() {
         var minutes = (hours - rhours) * 60;
         var rminutes = Math.round(minutes);
     }
-    document.getElementById("totalTime").innerHTML = `<h1>Total Time Watched</h1>${rhours} Hours and ${rminutes} Minutes`;
+    document.getElementById("totalTime").innerHTML = `<h2>Total Time Watched:</h2><br><h1>${rhours} Hours and ${rminutes} Minutes</h1>`;
 }
 
