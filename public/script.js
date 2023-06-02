@@ -66,10 +66,84 @@ const tasklistElem3 = document.querySelector('.horror-container');
 const tasklistElem4 = document.querySelector('.romance-container');
 const tasklistElem5 = document.querySelector('.other-container');
 const timeUpdate = document.querySelector('.header');
+// // const openMedia = document.getElementById("itemModal")
+// const closeMedia = document.getElementsByClassName("closeMedia")
 
-
+createStorage();
 displaymedia();
-updateTimeWatched();
+
+function createStorage() {
+    let storedMedia = JSON.parse(localStorage.getItem('storedMedia'));
+    if (storedMedia == null) {
+        storedMedia = []
+    }
+    localStorage.setItem('storedMedia', JSON.stringify(storedMedia));
+}
+    
+
+// code taken and adapted from https://vyspiansky.github.io/2019/07/13/javascript-at-least-one-checkbox-must-be-selected/
+(function() {
+    const form = document.querySelector('#movieForm');
+    const checkboxes = form.querySelectorAll('input[type=checkbox]');
+    const checkboxLength = checkboxes.length;
+    const firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null;
+
+    function init() {
+        if (firstCheckbox) {
+            for (let i = 0; i < checkboxLength; i++) {
+                checkboxes[i].addEventListener('change', checkValidity);
+            }
+
+            checkValidity();
+        }
+    }
+
+    function isChecked() {
+        for (let i = 0; i < checkboxLength; i++) {
+            if (checkboxes[i].checked) return true;
+        }
+
+        return false;
+    }
+
+    function checkValidity() {
+        const errorMessage = !isChecked() ? 'At least one checkbox must be selected.' : '';
+        firstCheckbox.setCustomValidity(errorMessage);
+    }
+
+    init();
+})();
+(function() {
+    const form = document.querySelector('#tvForm');
+    const checkboxes = form.querySelectorAll('input[type=checkbox]');
+    const checkboxLength = checkboxes.length;
+    const firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null;
+
+    function init() {
+        if (firstCheckbox) {
+            for (let i = 0; i < checkboxLength; i++) {
+                checkboxes[i].addEventListener('change', checkValidity);
+            }
+
+            checkValidity();
+        }
+    }
+
+    function isChecked() {
+        for (let i = 0; i < checkboxLength; i++) {
+            if (checkboxes[i].checked) return true;
+        }
+
+        return false;
+    }
+
+    function checkValidity() {
+        const errorMessage = !isChecked() ? 'At least one checkbox must be selected.' : '';
+        firstCheckbox.setCustomValidity(errorMessage);
+    }
+
+    init();
+})();
 
 
 movieForm.addEventListener('submit', function (event) {
@@ -82,7 +156,10 @@ movieForm.addEventListener('submit', function (event) {
         movieForm.elements.movieDuration.value,
         movieForm.elements.movieGenre.value,
         movieForm.elements.movieRating.value,
-        movieForm.elements.movieEmojiReview.value,
+        emojiReview(document.getElementById("movieEmojiReview1").value,
+        document.getElementById("movieEmojiReview2").value, 
+        document.getElementById("movieEmojiReview3").value,
+        document.getElementById("movieEmojiReview4").value),
         movieForm.elements.movieWrittenReview.value
     );
     movieForm.reset();
@@ -99,13 +176,30 @@ tvForm.addEventListener('submit', function (event) {
         tvForm.elements.tvDuration.value,
         tvForm.elements.tvGenre.value,
         tvForm.elements.tvRating.value,
-        tvForm.elements.tvEmojiReview.value,
+        emojiReview(document.getElementById("tvEmojiReview1").value,
+        document.getElementById("tvEmojiReview2").value, 
+        document.getElementById("tvEmojiReview3").value,
+        document.getElementById("tvEmojiReview4").value),
         tvForm.elements.tvWrittenReview.value
     );
     tvForm.reset();
 
 
 })
+
+function emojiReview(emoji1, emoji2, emoji3, emoji4) {
+    let string = '';
+    if(emoji1 !== '') {
+        string = string + emoji1 + ' ';
+    }if(emoji2 !== '') {
+        string = string + emoji2 + ' ';
+    }if(emoji3 !== '') {
+        string = string + emoji3 + ' ';
+    }if(emoji4 !== '') {
+        string = string + emoji4 + ' ';
+    }
+    return string;
+}
 
 class Media {
     constructor(name, duration, genre, rating, emojiReview, writtenReview) {
@@ -175,26 +269,53 @@ function displaymedia() {
     }
 }
 
-// function createmedia(media) {
-//     let item = document.createElement('button');
-//     item.setAttribute('id', 'description');
-//         item.innerHTML = `<p>${media.name} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
-//         genreloop(media.genre, item);
-//         deleteItem(item, media);
-
-//     }
 
 function createmedia(media) {
     let item = document.createElement('button');
-    item.setAttribute('id', 'description');
+    item.setAttribute('id', 'media-button');
+
+    let itemModal = document.createElement('dialog');
+    itemModal.setAttribute('class', 'itemModal');
+    genreloop(media.genre, itemModal)
+    deleteItem(itemModal, media, item);
+
+
     if (media.media == 'tv') {
-        item.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+
+        item.innerHTML = `<p> ${media.name}</p>`;
+        itemModal.innerHTML = `<p> ${media.name} </p><p> ${media.episode}</p><p> ${media.season} </p>
+        <p><bold>Duration</bold><p> ${media.duration} minuets</p><p> ${media.genre} </p><p> ${media.rating}/5 </p><p> ${media.emojiReview} </p>
+        <p>Review</p><br><p> ${media.writtenReview}</p><button class=closeMedia>X</button>`;
+        let closeMedia = itemModal.querySelector('.closeMedia');
+        
+
         genreloop(media.genre, item);
-        deleteItem(item, media);
+        deleteItem(itemModal, media, item);
+
+        item.addEventListener('click', () => {
+            itemModal.showModal();
+        });
+        closeMedia.addEventListener('click', () => {
+            itemModal.close();
+        });
+
     } else if (media.media == 'movie') {
-        item.innerHTML = `<p>${media.name} </p><p> ${media.director} </p><p> ${media.duration}</p><p> ${media.genre} </p><p> ${media.rating} </p><p> ${media.emojiReview} </p><p> ${media.writtenReview}</p>`;
+
+        item.innerHTML = `<p> ${media.name}</p>`;
+        itemModal.innerHTML = `<p> ${media.name} </p><p> ${media.director}</p>
+        <p><bold>Duration</bold> ${media.duration} minuets</p><p> ${media.genre} </p><p> ${media.rating}/5 </p><p> ${media.emojiReview} </p>
+        <p>Review</p><p> ${media.writtenReview}</p><button class="closeMedia">X</button>`;
+        let closeMedia = itemModal.querySelector('.closeMedia');
+
         genreloop(media.genre, item);
-        deleteItem(item, media);
+        deleteItem(itemModal, media, item);
+
+        item.addEventListener('click', () => {
+            itemModal.showModal();
+        });
+        closeMedia.addEventListener('click', () => {
+            itemModal.close();
+        });
 
     }
 }
@@ -218,18 +339,18 @@ function storeMedia(film) {
     console.log(JSON.parse(localStorage.getItem('storedMedia')))
 }
 
-function deleteItem(item, media) {
+function deleteItem(itemModal, media, item) {
     let delButton = document.createElement('button');
     let delButtonText = document.createTextNode('Delete');
     delButton.appendChild(delButtonText);
-    item.appendChild(delButton);
+    itemModal.appendChild(delButton);
     delButton.addEventListener('click', function (event) {
         let storedMedia = JSON.parse(localStorage.getItem('storedMedia'));
-
         for (i = 0; i < storedMedia.length; i++) {
             if (storedMedia[i].name === media.name && storedMedia[i].director === media.director) {
                 storedMedia.splice(i, 1);
                 localStorage.setItem('storedMedia', JSON.stringify(storedMedia))
+                itemModal.remove();
                 item.remove();
                 updateTimeWatched();
             }
@@ -260,8 +381,11 @@ function genreloop(genre, item) {
 
 function updateTimeWatched() {
     let totalTime = 0;
+
     let storedMedia = JSON.parse(localStorage.getItem('storedMedia'));
+
     if (storedMedia.length == null) {
+
         var rhours = 0;
         var rminutes = 0;
     } else {
@@ -274,6 +398,6 @@ function updateTimeWatched() {
         var minutes = (hours - rhours) * 60;
         var rminutes = Math.round(minutes);
     }
-    document.getElementById("totalTime").innerHTML = 'Total Time Watched: ' + rhours + ' Hours' + ' and ' + rminutes + ' Minutes';
+    document.getElementById("totalTime").innerHTML = `<h1>Total Time Watched</h1>${rhours} Hours and ${rminutes} Minutes`;
 }
 

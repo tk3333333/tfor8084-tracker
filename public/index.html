@@ -39,16 +39,15 @@
             <img class="logo-img" src="images/other-icon.png" alt="Other logo">
             <h2>Other</h2>
         </div>
-        <div id="see" class="comedy-container"></div>
-        <div id="see" class="action-container"></div>
-        <div id="see" class="thriller-container"></div>
-        <div id="see" class="horror-container"></div>
-        <div id="see" class="romance-container"></div>
-        <div id="see" class="other-container"></div>
+        <div id="genre-container" class="comedy-container"></div>
+        <div id="genre-container" class="action-container"></div>
+        <div id="genre-container" class="thriller-container"></div>
+        <div id="genre-container" class="horror-container"></div>
+        <div id="genre-container" class="romance-container"></div>
+        <div id="genre-container" class="other-container"></div>
     </div>
 
-    <button popUpButton class="material-icons popUpButton" style="font-size: 40px">add
-    </button>
+    <button popUpButton class="material-icons popUpButton" style="font-size: 40px">add</button>
 
    
     <dialog class="form-popup">
@@ -68,7 +67,6 @@
 
             <!-- Home page section -->
             <section id="movie" data-tab-content class="active">
-                <h1>Movie</h1>
                 <form id="movieForm">
                     <label for="movieName"><b>Movie Name</b></label><br>
                     <input type="text" placeholder="e.g Nemo" name="movieName" id="movieName" required>
@@ -102,12 +100,14 @@
                     </select>
                     <br><br>
                     <label for="movieEmojiReview"><b>Add an emoji review</b></label><br>
-                    <input type="checkbox" id="movieEmojiReview1" name="movieEmojiReview" value="happy">
-                    <label for="movieEmojiReview">:)</label><br>
-                    <input type="checkbox" id="movieEmojiReview2" name="movieEmojiReview" value="happy">
-                    <label for="movieEmojiReview">:)</label><br>
-                    <input type="checkbox" id="movieEmojiReview3" name="movieEmojiReview" value="happy">
-                    <label for="movieEmojiReview">:)</label>
+                    <input type="checkbox" id="movieEmojiReview1" name="movieEmojiReview1" value="😍">
+                    <label for="movieEmojiReview">😍</label><br>
+                    <input type="checkbox" id="movieEmojiReview2" name="movieEmojiReview" value="😭">
+                    <label for="movieEmojiReview">😭</label><br>
+                    <input type="checkbox" id="movieEmojiReview3" name="movieEmojiReview" value="😱">
+                    <label for="movieEmojiReview">😱</label><br>
+                    <input type="checkbox" id="movieEmojiReview4" name="movieEmojiReview" value="🥱">
+                    <label for="movieEmojiReview">🥱</label>
                     <br><br>
                     <label for="movieWrittenReview">Review</label><br>
                     <textarea rows="4" cols="50" name="movieWrittenReview" id="movieWrittenReview" placeholder="Enter your review here" required></textarea>
@@ -117,7 +117,6 @@
             </section>
 
             <section id="tv-show" data-tab-content>
-                <h1>Tv Show</h1>
                 <form id="tvForm">
                     <label for="tvName"><b>TV Show Name</b></label><br>
                     <input type="text" placeholder="e.g Young Rolays" name="tvName" id="tvName" required>
@@ -154,12 +153,14 @@
                     </select>
                     <br><br>
                     <label for="tvEmojiReview"><b>Add an emoji review</b></label><br>
-                    <input type="checkbox" id="tvEmojiReview" name="tvEmojiReview" value="happy">
-                    <label for="emoji1">:)</label><br>
-                    <input type="checkbox" id="tvEmojiReview" name="tvEmojiReview" value="happy">
-                    <label for="emoji1">:)</label><br>
-                    <input type="checkbox" id="tvEmojiReview" name="tvEmojiReview" value="happy">
-                    <label for="emoji1">:)</label>
+                    <input type="checkbox" id="tvEmojiReview1" name="tvEmojiReview" value="😍">
+                    <label for="emoji1">😍</label><br>
+                    <input type="checkbox" id="tvEmojiReview2" name="tvEmojiReview" value="😭">
+                    <label for="emoji1">😭</label><br>
+                    <input type="checkbox" id="tvEmojiReview3" name="tvEmojiReview" value="😱">
+                    <label for="emoji1">😱</label><br>
+                    <input type="checkbox" id="tvEmojiReview4" name="tvEmojiReview" value="🥱">
+                    <label for="emoji1">🥱</label>
                     <br><br>
                     <label for="text">Review</label><br>
                     <textarea rows="4" cols="50" name="tvWrittenReview" id="tvWrittenReview" placeholder="Enter your review here" required></textarea>
