@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <!-- Header -->
     <div class="container">
         <div class="header" style="background-image: url(images/inline_image_preview.jpg)">
             <h1 id="totalTime"></h1>
@@ -39,6 +40,7 @@
             <img class="logo-img" src="images/other-icon.png" alt="Other logo">
             <h2>Other</h2>
         </div>
+        <!-- main body -->
         <div id="genre-container" class="comedy-container"></div>
         <div id="genre-container" class="action-container"></div>
         <div id="genre-container" class="thriller-container"></div>
@@ -47,9 +49,10 @@
         <div id="genre-container" class="other-container"></div>
     </div>
 
+    <!-- add media Button -->
     <button popUpButton class="material-icons popUpButton" style="font-size: 40px">add</button>
 
-   
+   <!-- code taken and adapted from https://replit.com/@DECO2017/TabPageNavigation -->
     <dialog class="form-popup">
         <button closeButton type="button" class="btn">X</button>
         <h2>Pick a Media</h2>
@@ -65,7 +68,7 @@
         <main class="tab-content">
             <!-- Create individual sections with appropriate ID's for the content/pages you want to include -->
 
-            <!-- Home page section -->
+            <!-- Movie page section -->
             <section id="movie" data-tab-content class="active">
                 <form id="movieForm">
                     <label for="movieName"><b>Movie Name</b></label><br>
@@ -115,7 +118,7 @@
                     <input type="submit" value="Submit" class="submittButton">
                 </form>
             </section>
-
+        <!-- Tv Page Section -->
             <section id="tv-show" data-tab-content>
                 <form id="tvForm">
                     <label for="tvName"><b>TV Show Name</b></label><br>

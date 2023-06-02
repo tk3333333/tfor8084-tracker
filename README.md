@@ -88,3 +88,8 @@ There are a few further improvements and extensions that can be added to the web
 - User being allowed to upload an image of the film
 - Being able to add or change the given genres 
 - Being able to edit your response. 
+
+## Bibliography 
+- 50 Gorgeous Color Schemes From Stunning Websites. (2016). Retrieved 28 April 2023, from https://visme.co/blog/website-color-schemes/
+- Tv Switch Off with Analog Static Noise texture. (2023). Retrieved 28 April 2023, from https://elements.envato.com/-tv-switch-off-with-analog-static-noise-texture-R3U3HMM 
+- Windows 8 icons movie genres.(2018). Retrieved 2 June 2023, from https://icons8.com/download/icons/windows_8_icons_movie_genres.png
